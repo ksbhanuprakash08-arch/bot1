@@ -1,73 +1,64 @@
-# React + TypeScript + Vite
+# Cloud Storage App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple client + server example that demonstrates file upload and storage using Supabase.
 
-Currently, two official plugins are available:
+## Project structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `server.js` — Node.js server used by the project.
+- `script.js` — Client-side JavaScript used in `index.html`.
+- `index.html` — Main HTML UI for the demo.
+- `files.html` — File listing UI.
+- `test-storage.html`, `test-supabase.html` — Test pages.
+- `create_dummy_users.js` — Helper to create dummy users (if needed).
+- `SETUP_GUIDE.md`, `SUPABASE_SETUP.md`, `SUPABASE_DASHBOARD_SETUP.md` — Setup notes.
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js (16+ recommended)
+- A Supabase project with Storage enabled
 
-## Expanding the ESLint configuration
+## Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. Install dependencies:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Configure environment variables (or update `server.js` with your keys):
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `SUPABASE_URL` — your Supabase project URL
+- `SUPABASE_ANON_KEY` — your Supabase anon/public key
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+See `SUPABASE_SETUP.md` for more details about creating a Supabase project and obtaining keys.
+
+## Run
+
+Start the Node server (if the project uses it):
+
+```bash
+node server.js
 ```
+
+Then open `index.html` in your browser to use the demo, or open the test pages:
+
+- `test-storage.html` — test storage uploads/downloads
+- `test-supabase.html` — Supabase connection tests
+
+## Utilities
+
+- Use `create_dummy_users.js` to create example users (requires valid Supabase keys).
+- `update-files.js` (in `temp/`) and other helper scripts are for local testing.
+
+## Troubleshooting
+
+- Ensure your Supabase keys are correct and storage is enabled.
+- Check browser console and server logs for error details.
+
+## Notes
+
+This repository contains basic demo code and setup notes. Refer to the `SUPABASE_*` markdown files for step-by-step Supabase instructions.
+
+---
+
+If you'd like a more detailed README (examples, API docs, or screenshots), tell me what to include and I'll extend it.
